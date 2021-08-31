@@ -13,4 +13,5 @@ public class MvcMovieContext : DbContext
     }
 
     public DbSet<MvcMovie.Models.Movie> Movie { get; set; }
+
 }
