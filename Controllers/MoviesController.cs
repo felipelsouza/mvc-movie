@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MvcMovie.Models;
+using MvcMovie.Models.ViewModels;
 
 namespace MvcMovie.Controllers
 {
@@ -19,9 +20,27 @@ namespace MvcMovie.Controllers
         }
 
         // GET: Movies
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string searchTitle, string genre)
         {
-            return View(await _context.Movie.ToListAsync());
+            var movies = from m in _context.Movie
+                         select m;
+
+            if (!string.IsNullOrEmpty(searchTitle))
+            {
+                movies = movies.Where(x => x.Title.Contains(searchTitle));
+            }
+
+            if (!string.IsNullOrEmpty(genre))
+            {
+                movies = movies.Where(x => x.Genre == genre);
+            }
+
+            //Enviar uma instãncia de ModelGenreViewModel
+            var vmModelGenere = new MovieGenreViewModel();
+            //definir valor das propriedades
+
+
+            return View(movies.ToList());
         }
 
         // GET: Movies/Details/5
