@@ -10,6 +10,9 @@
     <a asp-action="Create">Novo Filme</a>
 </p>
 <form asp-controller="Movies" asp-action="Index" method="GET">
+    <select asp-for="Genres" asp-items="Model.Genres">
+        <option value="">Todos</option>
+    </select>
     <div class="form-group">
         <label class="control-label">Title:</label>
         <input type="text" name="searchTitle" class="form-control" />
