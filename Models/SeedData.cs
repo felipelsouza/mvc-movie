@@ -23,7 +23,8 @@ namespace MvcMovie.Models
                         Title = "Titanic",
                         ReleaseDate = DateTime.Parse("2000-01-10"),
                         Genre = "Romântico",
-                        Price = 7.99M
+                        Price = 7.99M,
+                        Rating = "R"
                     },
                     new Movie
                     {
